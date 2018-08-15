@@ -1,0 +1,43 @@
+<div>
+		<%= grid(@events_grid) do |g|
+			# g.column name: 'ID' do |validation|
+			# 	validation.id
+			# end
+			g.column  name: 'Name' do |event|
+				event.name
+			end
+			g.column name: 'Duration (in hours)' do |event|
+				event.duration
+			end
+
+			if current_user.adminflag==0 then
+     		 g.column name: 'Teamsize' do |event|
+				event.teamsize
+				end
+			end	
+			if current_user.adminflag==0 then
+     		 g.column name: 'Schedule' do |event|
+				link_to 'View schedule', vieweventschedule_path
+				end
+			end	
+			if current_user.adminflag==1 then
+     		 g.column name: 'Interested Attendees' do |event|
+				event.expectedNoOfAttendees
+				end
+			end	
+			# g.column name: 'Proposal' do |owned|
+		  #       link_to 'Proposal Document', owned.avatar.url, :target => "_blank"
+      #
+			# end
+			if current_user.adminflag==1 then
+				g.column name: 'Edit Event' do |event|
+	    		link_to 'Edit',edit_event_path(event)
+	    	end
+  		end
+		end-%>
+</div>
+<% if  current_user.adminflag==0 %>
+<%= link_to 'Back', events_path %>
+<% else %>
+<%= link_to 'Back', root_path %>
+<% end %>

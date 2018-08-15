@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Feedback</title>
+</head>
+<body>
+
+<%= simple_form_for @query do |f| %>
+
+<%= f.error_notification %>
+<div class="form-inputs">
+    <%= f.input :question, :required => true %>
+    <%= f.button :submit ,  :style => "cursor: pointer;
+  width: 100%;
+  border: none;
+  background: #4CAF50;
+  color: #FFF;
+  margin: 0 0 5px;
+  padding: 10px;
+  font-size: 15px;"%>
+		
+	<% end %>
+	</div>
+</body>
+</html>
+
+

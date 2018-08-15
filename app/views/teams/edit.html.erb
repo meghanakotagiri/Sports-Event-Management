@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Team</title>
+</head>
+<body>
+
+<h1> Edit Team Details</h1>
+
+<%= simple_form_for @team do |f| %>
+
+  <%= f.error_notification %>
+
+  <%= f.input :teamname, label: "Team Name" , :required => true%><br>
+
+  <%= f.label :Enter_Team_members_names %>
+    
+  <% for item in  1..(Event.find(@team.event_id ).teamsize) %>
+    <%= f.input :"member#{item}", label: "member_name#{item}", :required => true  %>
+  <% end %>  
+  <%= f.button :submit ,  :style => "cursor: pointer;
+  width: 100%;
+  border: none;
+  background: #4CAF50;
+  color: #FFF;
+  margin: 0 0 5px;
+  padding: 10px;
+  font-size: 15px;"%>
+    
+  <% end %>
+  </div>
+<%= link_to 'Show', @team %> |
+<%= link_to 'Back', teams_path %>
+</body>
+</html>
+
+
